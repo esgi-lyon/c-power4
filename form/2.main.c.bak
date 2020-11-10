@@ -1,0 +1,39 @@
+
+// CEs deux librairies ont déjà été expliqué à la question précédente
+#include <stdio.h>
+#include <stdlib.h>
+
+// Déjà expliqué dans l'exercice précédent
+int main()
+{
+  // Tableau d'entiers à taille fixe avec un premier niveau comportant 5 champ et ceux ci en possèdant
+  // eux-même 10
+	int TAB2[5][10];
+	int k = 100;
+  // Double boucle imbriquée,
+  // On retrouve pour chacune comme limite (i, j) celle correspondante à la taille du tableau pour
+  // éviter des erreurs de taille de tableau quand on affecte à ses cases de nouvelles valeurs
+	for (int i = 0; i<5;i++)
+		for (int j = 0;j<10; j++)
+		{
+
+				TAB2[i][j] = k++;
+        // \t signifuie tab et \n un retour à la ligne
+        // On affiche
+        // 1 - L'itération de la première boucle
+        // 2 - L'addresse mémoire du tableau TAB2
+        // 3 - L'addresse mémoire du champ de premier niveau du tableau TAB2
+				printf("i %d\t TAB %p_t TAB2[i] %p \n", i, TAB2, TAB2[i]);
+        // On affiche
+        // 1 - L'itération de la première boucle
+        // 2 - L'itération de la seconde boucle
+        // 3 - La valeur de l'entier k
+        // 4 - L'addresse mémoire du champ de second niveau du tableau TAB2
+				printf("i %d \t j %d \t k %d \t TAB2[i][j] %d\n ", i, j,k,TAB2[i][j]);
+		}
+  // On affiche
+  // 1 - L'itération de la première boucle
+  // 2 - L'itération de la seconde boucle
+  // 3 - La valeur précise de l'index 8 dans le tableau contenu à l'index 3 lui même contenu dans TAB2
+	printf("\n\n i %d \t j %d \t TAB2[][] %d\n\n", 3, 8, TAB2[3][8]);
+}
