@@ -1,9 +1,10 @@
+CC:=clang
 TARGET_EXEC ?= a.out
 
 BUILD_DIR ?= ./build
-# Available ./src ./pi
+
 # Usage : SRC_DIRS=./src make
-SRC_DIRS ?= ./list
+SRC_DIRS ?= ./src
 
 SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
