@@ -2,9 +2,9 @@
 #include <string.h>
 #include "functions.h"
 
-int main(int argc, char **argv)
+int main()
 {
-
+  printf("%s", "Hello World");
 
   return 0;
 }
