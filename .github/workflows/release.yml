@@ -29,7 +29,8 @@ jobs:
             # Install sem release plugins
             - uses: actions/setup-node@v2
             - run: |
-                npm install --dev -g \
+                mkdir -p $HOME/.npm && npm config set prefix $HOME/.npm
+                npm install -g \
                   "@semantic-release/changelog@^5.0.1" \
                   "@semantic-release/commit-analyzer@^8.0.1" \
                   "@semantic-release/github@^7.2.0" \
