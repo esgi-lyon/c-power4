@@ -49,4 +49,3 @@ Temporary Items
 # C
 *.dSYM
 build/
-node_modules
