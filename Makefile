@@ -5,6 +5,7 @@ BUILD_DIR ?= ./build
 
 # Usage : SRC_DIRS=./src make
 SRC_DIRS ?= ./src
+SKIP_EXEC ?= false
 
 SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
@@ -20,8 +21,10 @@ CFLAGS := -Wall -Wextra -Werror --std=c99
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	@$(CC) $(OBJS) -o $@ $(LDFLAGS)
 	@echo ""
+ifeq ($(SKIP_EXEC), false)
 	@$(call EXECUTE, $(ARGS))
 	@echo "\n"
+endif
 
 # assembly
 $(BUILD_DIR)/%.s.o: %.s
