@@ -1,0 +1,7 @@
+manala:
+  repository: "https://github.com/loic-roux-404/manala-recipes.git" 
+  recipe: dev.cpp
+
+map[string]interface {}{"Vars":map[string]interface {}{"gitignore":"", "recipe_save":"dev.cpp"}}
+gitignore: ""
+

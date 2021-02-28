@@ -1,0 +1,20 @@
+name: Package a binary
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+    artifact:
+        strategy:
+            matrix:
+                java: [ 13 ]
+
+        name: Publish - GitHub Packages
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Build
+              run: SKIP_EXEC=true make
+# TODO publish artifact
