@@ -46,9 +46,10 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 clean:
 	$(RM) -r $(BUILD_DIR)
 
-.PHONY: clean
+.PHONY: debug
 
 debug:
+	@echo $(SRC_DIRS)
 	@echo $(INC_DIRS)
 
 -include $(DEPS)
