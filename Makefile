@@ -4,7 +4,7 @@ TARGET_EXEC ?= a.out
 BUILD_DIR ?= ./build
 
 # Usage : SRC_DIRS=./src make
-SRC_DIRS ?= ./src
+SRC_DIRS ?= ./src ./lib
 SKIP_EXEC ?= false
 
 SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
@@ -45,6 +45,11 @@ $(BUILD_DIR)/%.cpp.o: %.cpp
 
 clean:
 	$(RM) -r $(BUILD_DIR)
+
+.PHONY: clean
+
+debug:
+	@echo $(INC_DIRS)
 
 -include $(DEPS)
 

@@ -3,7 +3,8 @@
         {
             "name": "C / CPP",
             "includePath": [
-                "."
+                "lib",
+                "src/"
             ],
             "defines": [],
             "macFrameworkPath": [],
