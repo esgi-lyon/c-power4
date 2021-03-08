@@ -1,5 +1,5 @@
 CC:=clang
-TARGET_EXEC ?= a.out
+TARGET_EXEC ?= power4
 
 BUILD_DIR ?= ./build
 
@@ -23,7 +23,7 @@ $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	@echo ""
 ifeq ($(SKIP_EXEC), false)
 	@$(call EXECUTE, $(ARGS))
-	@echo "\n"
+	@echo ""
 endif
 
 # assembly
