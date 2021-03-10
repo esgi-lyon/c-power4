@@ -7,7 +7,7 @@
 /**
  * Main entry of game
  * start it from here and consult manual
- */ 
+ */
 int main(int argc, char* argv[])
 {
   int aflag = 0;
@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
   int c;
 
   opterr = 0;
-  // TODO : try a struct as third arg 
+  // TODO : try a struct as third arg
   while ((c = getopt (argc, argv, "abc:")) != -1)
     switch (c)
       {

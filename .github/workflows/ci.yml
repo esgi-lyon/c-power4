@@ -1,16 +1,44 @@
 name: Package a binary
 
 on: [push]
-
+# TODO cache
 jobs:
-    artifact:
-        strategy:
-            matrix:
-                os: [ unbuntu-latest, macos-latest, windows-latest ]
-
-        name: Publish
+    ubuntu:
+        name: Build ubuntu
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - name: Build
-              run: SKIP_EXEC=true make
+            - name: fix empty unistd.h
+              run: /usr/local/include/unistd.h
+            - name: Linux tooling
+              run: curl -fL wget -O - https://apt.llvm.org/llvm.sh | sudo bash
+
+            - run: SKIP_EXEC=true make
+
+    macos:
+        runs-on: macos-latest
+        name: Build macos
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Xcode tooling
+              uses: maxim-lobanov/setup-xcode@v1
+              with:
+                  xcode-version: latest-stable
+
+            - run: SKIP_EXEC=true make
+
+
+    windows:
+        runs-on: windows-latest
+        name: Build windows
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Choco install
+              uses: crazy-max/ghaction-chocolatey@v1
+              with:
+                  args: install -y make findutils llvm
+
+            - run: make
+              env: { SKIP_EXEC: true }
