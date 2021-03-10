@@ -3,4 +3,6 @@
 
 void build_level();
 
+int calculate_win();
+
 #endif

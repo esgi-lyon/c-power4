@@ -1,5 +1,5 @@
 CC:=clang
-TARGET_EXEC ?= power4
+TARGET_EXEC ?= c-power4
 
 BUILD_DIR ?= ./build
 
