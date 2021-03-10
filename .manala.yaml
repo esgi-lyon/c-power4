@@ -3,3 +3,6 @@ manala:
   recipe: dev.cpp
 
 gitignore: ""
+
+semantic_release:
+  assets: [{ path: build/c-power4 }]

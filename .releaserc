@@ -1,12 +1,11 @@
 {
-  "branches": [
-    {"name": "beta", "prerelease": true},
-    "master"
-  ],
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     "@semantic-release/github",
-    "@semantic-release/changelog"
+    "@semantic-release/changelog",
+    ["@semantic-release/github",
+      {"assets": [{"path":"build/c-power4"}]} 
+    ]  
   ]
 }
