@@ -8,8 +8,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - name: fix empty unistd.h
-              run: /usr/local/include/unistd.h
+
             - name: Linux tooling
               run: curl -fL wget -O - https://apt.llvm.org/llvm.sh | sudo bash
 
@@ -38,7 +37,10 @@ jobs:
             - name: Choco install
               uses: crazy-max/ghaction-chocolatey@v1
               with:
-                  args: install -y make findutils llvm
+                  args: |
+                    version;
+                    doskey find=$($env:ChocolateyInstall)\bin\find
+                    choco -y make findutils llvm
 
             - run: make
               env: { SKIP_EXEC: true }
