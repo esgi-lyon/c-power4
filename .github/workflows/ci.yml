@@ -27,20 +27,16 @@ jobs:
 
             - run: SKIP_EXEC=true make
 
-
     windows:
         runs-on: windows-latest
         name: Build windows
         steps:
             - uses: actions/checkout@v2
-
-            - name: Choco install
-              uses: crazy-max/ghaction-chocolatey@v1
+            - uses: msys2/setup-msys2@v2
               with:
-                  args: |
-                    version;
-                    doskey find=$($env:ChocolateyInstall)\bin\find
-                    choco -y make findutils llvm
+                install: make mingw-w64-x86_64-clang findutils
+                path-type: minimal
 
-            - run: make
+            - shell: msys2 {0}
+              run: make
               env: { SKIP_EXEC: true }

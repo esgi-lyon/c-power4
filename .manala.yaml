@@ -5,5 +5,5 @@ manala:
 gitignore: ""
 
 semantic_release:
-  exec: SKIP_EXEC=true make
-  github: {assets: [{ path: build/c-power4 }]}
+  exec: { publishCmd: SKIP_EXEC=true make }
+  github: { assets: [{ path: build/c-power4 }] }

@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
         cvalue = optarg;
         break;
       case '?':
-        fprintf(stderr, "Error using arg : %c", c);
+        fprintf(stderr, "Error using arg : %c | check help", c);
         return 1;
       default:
         abort();

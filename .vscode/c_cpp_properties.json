@@ -3,7 +3,9 @@
         {
             "name": "C / CPP",
             "includePath": [
-                "."
+                "cli/",
+                "game/",
+                "lib"
             ],
             "defines": [],
             "macFrameworkPath": [],
