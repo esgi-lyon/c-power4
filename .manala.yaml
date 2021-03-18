@@ -6,4 +6,4 @@ gitignore: ""
 
 semantic_release:
   exec: { publishCmd: SKIP_EXEC=true make }
-  github: { assets: [{ path: build/c-power4 }] }
+  github: { assets: [{ path: ./artifacts }] }

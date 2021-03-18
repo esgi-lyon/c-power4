@@ -6,13 +6,21 @@ jobs:
     ubuntu:
         name: Build ubuntu
         runs-on: ubuntu-latest
+
         steps:
             - uses: actions/checkout@v2
 
             - name: Linux tooling
               run: curl -fL wget -O - https://apt.llvm.org/llvm.sh | sudo bash
 
-            - run: SKIP_EXEC=true make
+            - run: make
+              env: { SKIP_EXEC: true }
+
+            - name: Linux mac os binary
+              uses: actions/upload-artifact@v2
+              with:
+                name: linux_binary
+                path: build/c-power4-*
 
     macos:
         runs-on: macos-latest
@@ -23,9 +31,16 @@ jobs:
             - name: Xcode tooling
               uses: maxim-lobanov/setup-xcode@v1
               with:
-                  xcode-version: latest-stable
+                xcode-version: latest-stable
 
-            - run: SKIP_EXEC=true make
+            - run: make
+              env: { SKIP_EXEC: true }
+
+            - name: Store mac os binary
+              uses: actions/upload-artifact@v2
+              with:
+                name: macos_binary
+                path: build/c-power4-*
 
     windows:
         runs-on: windows-latest
@@ -40,3 +55,9 @@ jobs:
             - shell: msys2 {0}
               run: make
               env: { SKIP_EXEC: true }
+
+            - name: Windows binary
+              uses: actions/upload-artifact@v2
+              with:
+                name: windows_binary
+                path: build/c-power4-*
