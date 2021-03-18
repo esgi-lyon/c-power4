@@ -1,5 +1,5 @@
 CC:=clang
-TARGET_EXEC ?= c-power4-$(shell uname -p)-$(shell uname)
+TARGET_EXEC ?= c-power4-$(shell clang -dumpmachine)
 
 BUILD_DIR ?= ./build
 
