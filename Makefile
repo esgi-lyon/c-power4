@@ -20,10 +20,8 @@ CFLAGS := -Wall -Wextra -Werror --std=c99
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	@$(CC) $(OBJS) -o $@ $(LDFLAGS)
-	@echo ""
 ifeq ($(SKIP_EXEC), false)
 	@$(call EXECUTE, $(ARGS))
-	@echo ""
 endif
 
 # assembly
