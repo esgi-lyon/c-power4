@@ -1,6 +1,9 @@
 CC:=clang
-TARGET_EXEC ?= c-power4-$(shell clang -dumpmachine)
-
+ifeq ($(OS),Windows_NT)
+	TARGET_EXEC ?= c-power4-$(shell clang -dumpmachine).exe
+else
+	TARGET_EXEC ?= c-power4-$(shell clang -dumpmachine)
+endif
 BUILD_DIR ?= ./build
 
 # Usage : make
