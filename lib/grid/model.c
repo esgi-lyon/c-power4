@@ -2,13 +2,19 @@
 #include <stdlib.h>
 #include "model.h"
 
-struct Grid* build() {
-  printf("%s", "TODO create function");
+GridMap* create_grid() {
+  GridMap *grid = (GridMap*)malloc(sizeof(GridMap));
 
-  return NULL;
+  return grid;
 }
 
-struct Case* get_case(struct Grid* grid, int x, int y)
+Case* create_case() {
+    Case *grid_case = (Case *)malloc(sizeof(Case));
+
+  return grid_case;
+}
+
+Case* get_case(GridMap* grid, unsigned int x, unsigned int y)
 {
   printf("%s", "TODO interact function");
   printf("x %d | y %d", x, y);
@@ -17,10 +23,11 @@ struct Case* get_case(struct Grid* grid, int x, int y)
   return NULL;
 }
 
-struct Grid* append_case(struct Case* grid_case, int x, int y) {
+GridMap* append_case(GridMap* grid, Case* grid_case, unsigned int x, unsigned int y) {
   printf("%s", "TODO interact function");
   printf("x %d | y %d", x, y);
   printf("%p", &grid_case);
-  
+  printf("%p", &grid);
+
   return NULL;
 }

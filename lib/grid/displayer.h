@@ -5,6 +5,8 @@
 #ifndef DISPLAYER_H_INCLUDED
 #define DISPLAYER_H_INCLUDED
 
-void print_grid(struct Model* model);
+#define case_empty = '|\t|';
+
+void print_grid(struct GridMap* grid_map);
 
 #endif

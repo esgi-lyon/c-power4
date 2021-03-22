@@ -9,21 +9,21 @@
 #ifndef CONTROLLER_H_INCLUDED
 #define CONTROLLER_H_INCLUDED
 
-struct Grid* actual_grid;
-
 /**
  * @brief Launcher function, do :
  * - data (structure)
  * - echo the data
- * 
+ *
  * call : displayer build function
  */
-struct Grid* spawn_grid();
+struct GridMap* spawn_grid();
 
-void read_grid(struct Grid* model);
+void read_grid(GridMap* model);
 
-struct Grid* update_grid(int x, int y);
+struct GridMap* update_grid(int x, int y);
 
-void free_grid(struct Grid* model);
+void free_grid(GridMap* model);
+
+void fill_case()
 
 #endif

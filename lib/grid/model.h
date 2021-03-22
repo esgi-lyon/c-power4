@@ -5,47 +5,52 @@
  * - interact with the grid
  * - manage memory of grid
  * @note For internal use of model, use it only in controller
- */ 
+ */
 #ifndef MODEL_H_INCLUDED
 #define MODEL_H_INCLUDED
 
-struct Case {
-    struct Model* top;
-    struct Model* bottom;
-    struct Model* left;
-    struct Model* right;
+enum case_fills{empty, red, yellow};
 
-    int x;
-    int y; // TODO check if need unsigned int
-};
+typedef struct Case {
+    enum case_fills case_fills;
+} Case;
 
-struct Grid
+/**
+ * @brief Grid map system
+ */
+typedef struct GridMap
 {
-    struct Case* zero_zero_case; // x = 0 and y = 0 case
+    unsigned int x;
+    unsigned int y;
+    Case* _case;
+} GridMap;
 
-    int dimension_x;
-    int dimension_y;
-};
-
-struct Grid* build();
+/**
+ * @brief Create a grid empty struct
+ *
+ * @return GridMap*
+ */
+GridMap* build();
 
 /**
  * @brief Given coordinates, give the case to interact with
- * 
- * @param grid 
- * @param x 
- * @param y 
- * @return struct Case* 
+ *
+ * @param grid
+ * @param x
+ * @param y
+ * @return struct Case*
  */
-struct Case* get_case(struct Grid* grid, int x, int y);
+Case* get_case(GridMap* grid, unsigned int x, unsigned int y);
 
 /**
  * @brief add case in grid, error if already exist in coords
- * 
- * @param x 
- * @param y 
- * @return struct Grid* 
+ *
+ * @param grid
+ * @param grid_case
+ * @param x
+ * @param y
+ * @return struct Grid*
  */
-struct Grid* append_case(struct Case* grid_case, int x, int y);
+GridMap* append_case(GridMap* grid, Case* grid_case, unsigned int x, unsigned int y);
 
 #endif
