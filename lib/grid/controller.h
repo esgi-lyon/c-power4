@@ -10,20 +10,38 @@
 #define CONTROLLER_H_INCLUDED
 
 /**
- * @brief Launcher function, do :
- * - data (structure)
- * - echo the data
+ * @brief Create a grid empty struct
  *
- * call : displayer build function
+ * @return GridMap*
  */
-GridMap* spawn_grid();
+GridMap create_grid();
 
-void read_grid(GridMap* model);
+/**
+ * @brief Given coordinates, give the case to interact with
+ *
+ * @param grid
+ * @param x
+ * @param y
+ * @return enum Case
+ */
+enum Case get_case(GridMap* grid, unsigned int x, unsigned int y);
 
-GridMap* update_grid(int x, int y);
+/**
+ * @brief add case in grid, error if already exist in coords
+ *
+ * @param grid
+ * @param grid_case
+ * @param x
+ * @param y
+ * @return struct Grid*
+ */
+GridMap* append_case(
+  GridMap* grid,
+  enum Case grid_case,
+  unsigned int x,
+  unsigned int y
+);
 
-void free_grid(GridMap* model);
-
-void fill_case()
+void free_grid(GridMap* grid);
 
 #endif

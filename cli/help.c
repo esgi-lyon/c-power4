@@ -3,11 +3,11 @@
 #include "help.h"
 
 void desc() {
-  printf("%s", "TODO desc function");
+  printf("%s", "TODO desc function\n");
 }
 
 void commands() {
-  printf("%s", "TODO commands function");
+  printf("%s", "TODO commands function\n");
 }
 
 void help() {

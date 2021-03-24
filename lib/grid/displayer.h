@@ -5,6 +5,7 @@
 #ifndef DISPLAYER_H_INCLUDED
 #define DISPLAYER_H_INCLUDED
 
+const char* get_case_char(enum Case grid_case);
 
 void print_grid(GridMap* grid_map);
 

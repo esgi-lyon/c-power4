@@ -2,25 +2,40 @@
 #include <stdlib.h>
 #include "model.h"
 
-GridMap* spawn_grid() {
-  printf("%s", "TODO spawn_grid function");
+GridMap create_grid() {
+  GridMap grid = (GridMap) {
+    .matrix = {
+      {case_empty, case_empty, case_empty, case_empty, case_empty, case_empty, case_empty},
+      {case_empty, case_empty, case_empty, case_empty, case_empty, case_empty, case_empty},
+      {case_empty, case_empty, case_empty, case_empty, case_empty, case_empty, case_empty},
+      {case_empty, case_empty, case_empty, case_empty, case_empty, case_empty, case_empty},
+      {case_empty, case_empty, case_empty, case_empty, case_empty, case_empty, case_empty},
+      {case_empty, case_empty, case_empty, case_empty, case_empty, case_empty, case_empty}
+    }
+  };
 
-  return NULL;
-}
-
-void read_grid(GridMap* grid) {
-  printf("%s", "TODO read_grid function");
   printf("%p", &grid);
+
+  return grid;
 }
 
-GridMap* update_grid(double x, double y){
-  printf("x %0.2f / y %0.2f", x , y);
-  printf("%s", "TODO update_grid function");
+enum Case get_case(GridMap* grid, unsigned int x, unsigned int y) {
+  return grid->matrix[x][y];
+};
 
-  return NULL;
+GridMap* append_case(
+  GridMap* grid,
+  enum Case grid_case,
+  unsigned int x,
+  unsigned int y
+) {
+  if (x >= 0 && y >= 0)
+    grid->matrix[x][y] = grid_case;
+
+  return grid;
 }
+
 
 void free_grid(GridMap* grid) {
-  printf("%p", &grid);
-  printf("%s", "TODO free_grid function");
+  free(grid);
 };

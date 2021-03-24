@@ -3,6 +3,7 @@
 #include <string.h>
 #include <getopt.h>
 #include "help.h"
+#include "level.h"
 
 /**
  * Main entry of game
@@ -24,7 +25,7 @@ int main(int argc, char* argv[])
 
         switch (opt) {
           case 's':
-              help();
+              init();
               break;
           case 'h':
               fprintf(stdout, "Got bar\n");

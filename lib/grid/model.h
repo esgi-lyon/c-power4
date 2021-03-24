@@ -9,9 +9,11 @@
 #ifndef MODEL_H_INCLUDED
 #define MODEL_H_INCLUDED
 
-typedef enum Case{
+enum Case{
   case_empty, case_red, case_yellow
-} Case;
+};
+
+typedef enum Case Matrix[6][7];
 
 /**
  * @brief Grid map system
@@ -19,40 +21,7 @@ typedef enum Case{
  * - matrix[x][y]
  */
 typedef struct GridMap {
-  Case* matrix[6][7];
+  Matrix matrix;
 } GridMap;
-
-/**
- * @brief Create a grid empty struct
- *
- * @return GridMap*
- */
-GridMap* create_grid();
-
-/**
- * @brief Given coordinates, give the case to interact with
- *
- * @param grid
- * @param x
- * @param y
- * @return enum Case
- */
-Case* get_case(GridMap* grid, unsigned int x, unsigned int y);
-
-/**
- * @brief add case in grid, error if already exist in coords
- *
- * @param grid
- * @param grid_case
- * @param x
- * @param y
- * @return struct Grid*
- */
-GridMap* append_case(
-  GridMap* grid,
-  Case* grid_case,
-  unsigned int x,
-  unsigned int y
-);
 
 #endif
