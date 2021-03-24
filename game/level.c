@@ -3,21 +3,21 @@
 #include "grid/model.h"
 #include "grid/displayer.h"
 #include "grid/controller.h"
+#include "colors.h"
 
 GridMap game_grid;
 int turn_counter = 0;
+int win_status = 0;
 
-/**
- * @brief Given cli input, init the game in a switch
- * - case 1 begin game
- * - case 2 play and calculate win
- * - case 3 a player winned
- */
-void build_level() {
-  printf("Starting game...\n");
-  game_grid = create_grid();
+const enum Case red_player = case_red;
+const enum Case yellow_player = case_yellow;
+enum Case current_player;
 
-  print_grid(&game_grid);
+void switch_player() {
+  if (current_player == red_player)
+    current_player = yellow_player;
+  else if (current_player == yellow_player)
+    current_player = red_player;
 }
 
 int calculate_win() {
@@ -26,6 +26,33 @@ int calculate_win() {
   return 0;
 }
 
+
+
+void build_level() {
+  game_grid = create_grid();
+
+  while (win_status != 1) {
+    print_grid(&game_grid);
+    if (turn_counter == 0) return;
+
+    int* input_col = NULL;
+    printf("%s : Enter a column from 0 to 7 \n", get_case_char(current_player));
+    scanf("%d", input_col);
+    if (input_col >= 0)
+      printf("toto");
+      //append_case();
+      switch_player();
+    turn_counter++;
+  }
+}
+
+/**
+ * @brief on start game input from, cli build and loop levels
+ * - case 1 begin game
+ * - case 2 play and calculate win
+ * - case 3 a player winned
+ */
 void init() {
+  printf("\x1B[32m" "Starting game...\n" RESET);
   build_level();
 }

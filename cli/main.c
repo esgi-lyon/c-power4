@@ -18,20 +18,15 @@ int main(int argc, char* argv[])
     for (;;) {
         int opt = getopt_long(argc, argv, "sh", longopts, NULL);
 
-        if (opt == -1) {
-            help();
-            break;
-        }
-
         switch (opt) {
           case 's':
               init();
-              break;
+              return 0;
           case 'h':
-              fprintf(stdout, "Got bar\n");
-              break;
+              help(0);
+              return 0;
           default:
-              help();
+              help(1);
               return 1;
         }
     }

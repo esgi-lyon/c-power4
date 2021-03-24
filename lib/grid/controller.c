@@ -33,7 +33,6 @@ GridMap* append_case(
   return grid;
 }
 
-
 void free_grid(GridMap* grid) {
   free(grid);
 };

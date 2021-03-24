@@ -3,12 +3,11 @@
 #ifndef LEVEL_H_INCLUDED
 #define LEVEL_H_INCLUDED
 
-const enum Case red_player = case_red;
-const enum Case yellow_player = case_yellow;
-
-void build_level();
+void switch_player();
 
 int calculate_win();
+
+void build_level();
 
 void init();
 

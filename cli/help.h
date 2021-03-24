@@ -6,13 +6,6 @@
 #define HELP_H_INCLUDED
 
 /**
- * @brief Wrap help info texts
- *
- * @return int
- */
-void help();
-
-/**
  * @brief small description of game
  */
 void desc();
@@ -22,5 +15,17 @@ void desc();
  * read sibling files because in cli/ folder, one file == one command
  */
 void commands();
+
+/**
+ * @brief Print error
+ */
+void error_usage();
+
+/**
+ * @brief Wrap help info texts
+ *
+ * @return int
+ */
+void help();
 
 #endif

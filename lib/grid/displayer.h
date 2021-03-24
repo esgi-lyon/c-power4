@@ -1,3 +1,5 @@
+#define PLAYER_CHAR "  O   "
+
 /**
  * @brief View component in grid MVC pattern
  * Print a grid from the model
