@@ -14,8 +14,6 @@ GridMap create_grid() {
     }
   };
 
-  printf("%p", &grid);
-
   return grid;
 }
 

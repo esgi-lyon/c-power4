@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "model.h"
 
+char separator[] = "---------------------------------------------------------";
+
 const char* get_case_char(enum Case grid_case) {
    switch (grid_case) {
       case case_empty: return "\t";
@@ -13,11 +15,14 @@ const char* get_case_char(enum Case grid_case) {
 
 void print_grid(GridMap* grid) {
    int x, y;
-   printf("\n");
-   for (x = 0; x <= 6; x++) {
-      for (y = 0; y <= 7; y++) {
-        printf("x %s", get_case_char(grid->matrix[x][y]));
+   printf("\n%s", separator);
+   for (x = 0; x < 6; x++) {
+     printf("\n");
+      for (y = 0; y < 7; y++) {
+        printf("| %s", get_case_char(grid->matrix[x][y]));
+        if (y == 6) printf("|");
       }
+      printf("\n%s", separator);
    }
    printf("\n");
 }
