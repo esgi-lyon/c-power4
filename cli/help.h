@@ -6,20 +6,21 @@
 #define HELP_H_INCLUDED
 
 /**
+ * @brief Wrap help info texts
+ *
+ * @return int
+ */
+void help();
+
+/**
  * @brief small description of game
  */
-int desc();
+void desc();
 
 /**
  * @brief print all commands available
  * read sibling files because in cli/ folder, one file == one command
  */
-int commands();
-
-/**
- * @brief How to start the game and
- * check all possible interactions
- */
-int game_start();
+void commands();
 
 #endif

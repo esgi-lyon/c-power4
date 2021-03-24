@@ -16,11 +16,11 @@
  *
  * call : displayer build function
  */
-struct GridMap* spawn_grid();
+GridMap* spawn_grid();
 
 void read_grid(GridMap* model);
 
-struct GridMap* update_grid(int x, int y);
+GridMap* update_grid(int x, int y);
 
 void free_grid(GridMap* model);
 

@@ -3,31 +3,23 @@
 #include "model.h"
 
 GridMap* create_grid() {
-  GridMap *grid = (GridMap*)malloc(sizeof(GridMap));
+  GridMap *grid = (GridMap*) malloc(sizeof(GridMap));
 
   return grid;
 }
 
-Case* create_case() {
-    Case *grid_case = (Case *)malloc(sizeof(Case));
+Case* get_case(GridMap* grid, unsigned int x, unsigned int y) {
+  return grid->matrix[x][y];
+};
 
-  return grid_case;
-}
+GridMap* append_case(
+  GridMap* grid,
+  Case* grid_case,
+  unsigned int x,
+  unsigned int y
+) {
+  if (x >= 0 && y >= 0)
+    grid->matrix[x][y] = grid_case;
 
-Case* get_case(GridMap* grid, unsigned int x, unsigned int y)
-{
-  printf("%s", "TODO interact function");
-  printf("x %d | y %d", x, y);
-  printf("%p", &grid);
-
-  return NULL;
-}
-
-GridMap* append_case(GridMap* grid, Case* grid_case, unsigned int x, unsigned int y) {
-  printf("%s", "TODO interact function");
-  printf("x %d | y %d", x, y);
-  printf("%p", &grid_case);
-  printf("%p", &grid);
-
-  return NULL;
+  return grid;
 }

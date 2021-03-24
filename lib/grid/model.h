@@ -9,20 +9,17 @@
 #ifndef MODEL_H_INCLUDED
 #define MODEL_H_INCLUDED
 
-enum case_fills{empty, red, yellow};
-
-typedef struct Case {
-    enum case_fills case_fills;
+typedef enum Case{
+  case_empty, case_red, case_yellow
 } Case;
 
 /**
  * @brief Grid map system
+ * first is row, second nested array is column
+ * - matrix[x][y]
  */
-typedef struct GridMap
-{
-    unsigned int x;
-    unsigned int y;
-    Case* _case;
+typedef struct GridMap {
+  Case* matrix[6][7];
 } GridMap;
 
 /**
@@ -30,7 +27,7 @@ typedef struct GridMap
  *
  * @return GridMap*
  */
-GridMap* build();
+GridMap* create_grid();
 
 /**
  * @brief Given coordinates, give the case to interact with
@@ -38,7 +35,7 @@ GridMap* build();
  * @param grid
  * @param x
  * @param y
- * @return struct Case*
+ * @return enum Case
  */
 Case* get_case(GridMap* grid, unsigned int x, unsigned int y);
 
@@ -51,6 +48,11 @@ Case* get_case(GridMap* grid, unsigned int x, unsigned int y);
  * @param y
  * @return struct Grid*
  */
-GridMap* append_case(GridMap* grid, Case* grid_case, unsigned int x, unsigned int y);
+GridMap* append_case(
+  GridMap* grid,
+  Case* grid_case,
+  unsigned int x,
+  unsigned int y
+);
 
 #endif

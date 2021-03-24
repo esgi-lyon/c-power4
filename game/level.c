@@ -11,12 +11,8 @@ GridMap* game_grid;
  * - case 2 play and calculate win
  * - case 3 a player winned
  */
-void init() {
-
-}
-
 int build_level() {
-
+  game_grid = create_grid();
 
   return 0;
 }

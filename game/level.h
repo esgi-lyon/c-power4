@@ -1,8 +1,10 @@
 #ifndef LEVEL_H_INCLUDED
 #define LEVEL_H_INCLUDED
 
-const char red = 'x';
-const char yellow = 'o';
+#define case_empty = '|\t|';
+
+#define red = 'x';
+#define yellow = 'o';
 
 void init();
 
