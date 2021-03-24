@@ -8,5 +8,35 @@
                 "cmd": "make"
             }
         ]
+    },
+    "files.associations": {
+        "Vagrantfile": "ruby",
+        "*.twig": "twig",
+        "basics": "nginx",
+        "all": "yaml",
+        "security": "ansible-advanced",
+        "hosting": "ansible-advanced",
+        "env": "ansible-advanced",
+        "stack": "ansible-advanced",
+        "*.yml": "yaml",
+        ".travis.yml": "yaml",
+        ".appveyor.yml": "yaml",
+        ".manala.yml": "yaml",
+        ".yaml": "yaml",
+        "*.tmpl": "gotemplate",
+        "*.y(a)ml.tmpl": "goyaml",
+        "*.hcl": "hcl",
+        ".denonrc": "json",
+        "*.toml": "toml",
+        "atomic": "c",
+        "*.tcc": "c",
+        "deque": "c",
+        "string": "c",
+        "unordered_map": "c",
+        "vector": "c",
+        "fstream": "c",
+        "limits": "c",
+        "sstream": "c",
+        "system_error": "c"
     }
 }

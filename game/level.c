@@ -18,6 +18,12 @@ void switch_player() {
     current_player = yellow_player;
   else if (current_player == yellow_player)
     current_player = red_player;
+  else
+    // FIXME not random player
+    if ((rand() % (30 + 1 - 1) + 1) % 2 == 1)
+      current_player = red_player;
+    else
+      current_player = yellow_player;
 }
 
 int calculate_win() {
@@ -26,22 +32,29 @@ int calculate_win() {
   return 0;
 }
 
-
-
 void build_level() {
   game_grid = create_grid();
 
   while (win_status != 1) {
-    print_grid(&game_grid);
-    if (turn_counter == 0) return;
+    // Choose first player
+    if (turn_counter == 0) {
+      switch_player();
+      turn_counter++;
+      continue;
+    };
 
-    int* input_col = NULL;
+    print_grid(&game_grid);
+
+    int input_col;
     printf("%s : Enter a column from 0 to 7 \n", get_case_char(current_player));
-    scanf("%d", input_col);
-    if (input_col >= 0)
+    scanf("%d", &input_col);
+
+    if (input_col >= 0) {
       printf("toto");
       //append_case();
       switch_player();
+    }
+
     turn_counter++;
   }
 }
@@ -53,6 +66,6 @@ void build_level() {
  * - case 3 a player winned
  */
 void init() {
-  printf("\x1B[32m" "Starting game...\n" RESET);
+  printf(KGRN "Starting game..." RESET);
   build_level();
 }

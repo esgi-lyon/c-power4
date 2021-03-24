@@ -27,10 +27,12 @@ GridMap* append_case(
   unsigned int x,
   unsigned int y
 ) {
-  if (x >= 0 && y >= 0)
+  if (x >= 0 && y >= 0) {
     grid->matrix[x][y] = grid_case;
-
-  return grid;
+    return grid;
+  } else {
+    return NULL;
+  }
 }
 
 void free_grid(GridMap* grid) {
