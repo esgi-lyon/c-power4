@@ -87,9 +87,68 @@ void calculate_win(GridMap* grid, enum Case player) {
   }
 
   // diagonal
-  // TODO
 
-  return;
+  // Sud-Ouest -> Nord-Est
+  for (x = 0; x <= 3; x++)
+  {
+    for (y = 0; y <= 3; y++)
+    {
+      if (
+          player == grid->matrix[x][y] &&
+          grid->matrix[x + 1][y + 1] == previous)
+      {
+        if (
+            player == grid->matrix[x][y] &&
+            grid->matrix[x + 2][y + 2] == previous)
+        {
+          if (
+              player == grid->matrix[x][y] &&
+              grid->matrix[x + 3][y + 3] == previous)
+          {
+            printf(KMAG "\nline count : %d" RESET, line);
+            printf("\nx : %d", x + 1);
+            printf("\ny : %d", y + 1);
+            printf("\n%s", get_case_char(grid->matrix[x + 1][y + 1]));
+            line++;
+            return 0;
+          }
+        }
+      }
+      previous = grid->matrix[x + 1][y + 1];
+    }
+  }
+
+  // Sud-Est -> Nord-Ouest
+  for (x = 6; x >= 3; x--)
+  {
+    for (y = 0; y <= 3; y++)
+    {
+      if (
+          player == grid->matrix[x][y] &&
+          grid->matrix[x - 1][y + 1] == previous)
+      {
+        if (
+            player == grid->matrix[x][y] &&
+            grid->matrix[x - 2][y + 2] == previous)
+        {
+          if (
+              player == grid->matrix[x][y] &&
+              grid->matrix[x - 3][y + 3] == previous)
+          {
+            printf(KMAG "\nline count : %d" RESET, line);
+            printf("\nx : %d", x + 1);
+            printf("\ny : %d", y + 1);
+            printf("\n%s", get_case_char(grid->matrix[x - 1][y + 1]));
+            line++;
+            return 0;
+          }
+        }
+      }
+      previous = grid->matrix[x - 1][y + 1];
+    }
+  }
+
+  return 0;
 }
 
 int determine_y_in_col(GridMap* grid, unsigned int x) {
