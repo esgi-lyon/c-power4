@@ -3,6 +3,6 @@
 #ifndef LEVEL_H_INCLUDED
 #define LEVEL_H_INCLUDED
 
-void init();
+void loop_level();
 
 #endif

@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 
         switch (opt) {
           case 's':
-              init();
+              loop_level();
               return 0;
           case 'h':
               help(0);

@@ -35,6 +35,7 @@ enum Case* reset_or_win(int* line, enum Case* previous, enum Case player) {
     printf(KNRM "\n %s \n" RESET, separator);
     printf(KBLU " ==== %s WINNED ====" RESET, get_case_char(player));
     printf(KNRM "\n %s \n" RESET, separator);
+
     return (enum Case*) player;
   }
 
@@ -44,7 +45,7 @@ enum Case* reset_or_win(int* line, enum Case* previous, enum Case player) {
   return NULL;
 }
 
-int calculate_win(GridMap* grid, enum Case player) {
+void calculate_win(GridMap* grid, enum Case player) {
   // line vertical
   int x, y;
   enum Case previous;
@@ -65,7 +66,7 @@ int calculate_win(GridMap* grid, enum Case player) {
   }
 
   if (reset_or_win(&line, &previous, player) != NULL) {
-    return 0;
+    return;
   }
 
   // vertical
@@ -82,13 +83,13 @@ int calculate_win(GridMap* grid, enum Case player) {
   }
 
   if (reset_or_win(&line, &previous, player)) {
-    return 0;
+    return;
   }
 
   // diagonal
   // TODO
 
-  return 0;
+  return;
 }
 
 int determine_y_in_col(GridMap* grid, unsigned int x) {
@@ -112,7 +113,14 @@ int set_column(enum Case grid_case, unsigned int x) {
   }
 }
 
+/**
+ * @brief on start game input from, cli build and loop levels
+ * - case 1 begin game
+ * - case 2 play and calculate win
+ * - case 3 a player winned
+ */
 void loop_level() {
+  printf(KGRN "Starting game..." RESET);
   game_grid = create_grid();
   int turn_counter = 0;
 
@@ -149,15 +157,4 @@ void loop_level() {
 
     turn_counter++;
   }
-}
-
-/**
- * @brief on start game input from, cli build and loop levels
- * - case 1 begin game
- * - case 2 play and calculate win
- * - case 3 a player winned
- */
-void init() {
-  printf(KGRN "Starting game..." RESET);
-  loop_level();
 }
