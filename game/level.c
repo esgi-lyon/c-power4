@@ -83,8 +83,10 @@ int calculate_win(GridMap* grid, enum Case player) {
 
   if (reset_or_win(&line, &previous, player)) {
     return 0;
-  };
+  }
+
   // diagonal
+  // TODO
 
   return 0;
 }
