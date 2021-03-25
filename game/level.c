@@ -68,6 +68,7 @@ int calculate_win(GridMap* grid, enum Case player) {
         printf("\n%s", get_case_char(grid->matrix[x][y]));
         line++;
       }
+      previous = grid->matrix[x][y];
     }
   }
 
