@@ -98,8 +98,8 @@ void calculate_win(GridMap* grid, enum Case player) {
       if (
           player == grid->matrix[x][y] &&
           (
-            grid->matrix[x + 1][y + 1] == previous ||
-            grid->matrix[x + 2][y + 2] == previous ||
+            grid->matrix[x + 1][y + 1] == previous &&
+            grid->matrix[x + 2][y + 2] == previous &&
             grid->matrix[x + 3][y + 3] == previous
           )
         ) {
@@ -126,8 +126,8 @@ void calculate_win(GridMap* grid, enum Case player) {
       if (
           player == grid->matrix[x][y] &&
           (
-            grid->matrix[x - 1][y + 1] == previous ||
-            grid->matrix[x - 2][y + 2] == previous ||
+            grid->matrix[x - 1][y + 1] == previous &&
+            grid->matrix[x - 2][y + 2] == previous &&
             grid->matrix[x - 3][y + 3] == previous
           )
         ) {
