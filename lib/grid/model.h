@@ -1,3 +1,6 @@
+#define X_SIZE 7
+#define Y_SIZE 6
+
 /**
  * @brief Model component in grid MVC pattern
  * data structure and helper functions to :
@@ -13,7 +16,7 @@ enum Case{
   case_empty, case_red, case_yellow
 };
 
-typedef enum Case Matrix[6][7];
+typedef enum Case Matrix[X_SIZE][Y_SIZE];
 
 /**
  * @brief Grid map system

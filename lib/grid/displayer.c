@@ -18,11 +18,11 @@ const char* get_case_char(enum Case grid_case) {
 void print_grid(GridMap* grid) {
    int x, y;
    printf("\n%s", separator);
-   for (x = 0; x < 6; x++) {
+    for (y = 0; y < Y_SIZE; y++) {
       printf("\n");
-      for (y = 0; y < 7; y++) {
+      for (x = 0; x < X_SIZE; x++) {
         printf("| %s", get_case_char(grid->matrix[x][y]));
-        if (y == 6) printf("|");
+        if (x == 6) printf("|");
       }
       printf("\n%s", separator);
    }
