@@ -28,6 +28,22 @@ void switch_player() {
   }
 }
 
+enum Case* reset_or_win(int* line, enum Case* previous, enum Case player) {
+  if (*line == 4) {
+    win_status = 1;
+    const char separator[] = "=======================";
+    printf(KNRM "\n %s \n" RESET, separator);
+    printf(KBLU " ==== %s WINNED ====" RESET, get_case_char(player));
+    printf(KNRM "\n %s \n" RESET, separator);
+    return (enum Case*) player;
+  }
+
+  line = 0;
+  previous = NULL;
+
+  return NULL;
+}
+
 int calculate_win(GridMap* grid, enum Case player) {
   // line vertical
   int x, y;
@@ -42,18 +58,15 @@ int calculate_win(GridMap* grid, enum Case player) {
         grid->matrix[x][y] == previous
       ) {
         line++;
-        printf(KGRN "\nline count : %d" RESET, line);
-        printf("\nx : %d", x + 1);
-        printf("\ny : %d", y + 1);
-        printf("\n%s", get_case_char(grid->matrix[x][y]));
       }
 
       previous = grid->matrix[x][y];
     }
   }
 
-  line = 1;
-  previous = case_empty;
+  if (reset_or_win(&line, &previous, player) != NULL) {
+    return 0;
+  }
 
   // vertical
   for (x = 0; x < X_SIZE; x++) {
@@ -62,16 +75,15 @@ int calculate_win(GridMap* grid, enum Case player) {
         player == grid->matrix[x][y] &&
         grid->matrix[x][y] == previous
       ) {
-        printf(KMAG "\nline count : %d" RESET, line);
-        printf("\nx : %d", x + 1);
-        printf("\ny : %d", y + 1);
-        printf("\n%s", get_case_char(grid->matrix[x][y]));
         line++;
       }
       previous = grid->matrix[x][y];
     }
   }
 
+  if (reset_or_win(&line, &previous, player)) {
+    return 0;
+  };
   // diagonal
 
   return 0;
