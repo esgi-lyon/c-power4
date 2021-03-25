@@ -3,7 +3,4 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 # tooling
 choco install -y cygwin
 choco install -y msys2
-refreshenv
-pacman -Ss make
-pacman -Ss findutils
-pacman -S 'mingw-w64-x86_64-llvm'
+C:\msys64\usr\bin\env MSYSTEM=MINGW64 c:\msys64\usr\bin\bash -c 'pacman -Ss make findutils mingw-w64-x86_64-llvm'
