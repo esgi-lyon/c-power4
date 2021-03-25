@@ -5,11 +5,9 @@
 
 void switch_player();
 
-int determine_x_in_col(GridMap* grid);
-
 void set_column(enum Case grid_case, unsigned int y);
 
-int calculate_win();
+int calculate_win(GridMap* grid);
 
 void loop_level();
 

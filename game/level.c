@@ -28,8 +28,50 @@ void switch_player() {
   }
 }
 
-int calculate_win() {
-  printf("%s", "TODO calculate_win function");
+int calculate_win(GridMap* grid, enum Case player) {
+  // line vertical
+  int x, y;
+  enum Case previous;
+  int line = 1;
+
+  // horizontal
+  for (y = Y_SIZE - 1; y >= 0; y--) {
+    for (x = 0; x < X_SIZE; x++) {
+      if (
+        player == grid->matrix[x][y] &&
+        grid->matrix[x][y] == previous
+      ) {
+        line++;
+        printf(KGRN "\nline count : %d" RESET, line);
+        printf("\nx : %d", x + 1);
+        printf("\ny : %d", y + 1);
+        printf("\n%s", get_case_char(grid->matrix[x][y]));
+      }
+
+      previous = grid->matrix[x][y];
+    }
+  }
+
+  line = 1;
+  previous = case_empty;
+
+  // vertical
+  for (x = 0; x < X_SIZE; x++) {
+    for (y = Y_SIZE - 1; y >= 0; y--) {
+      if (
+        player == grid->matrix[x][y] &&
+        grid->matrix[x][y] == previous
+      ) {
+        printf(KMAG "\nline count : %d" RESET, line);
+        printf("\nx : %d", x + 1);
+        printf("\ny : %d", y + 1);
+        printf("\n%s", get_case_char(grid->matrix[x][y]));
+        line++;
+      }
+    }
+  }
+
+  // diagonal
 
   return 0;
 }
@@ -38,7 +80,6 @@ int determine_y_in_col(GridMap* grid, unsigned int x) {
   int y;
   for (y = 0; y < Y_SIZE; y++) {
     if (grid->matrix[x][y] == case_empty) {
-      printf("%d aa", y);
       return y;
     }
   }
@@ -48,7 +89,7 @@ int determine_y_in_col(GridMap* grid, unsigned int x) {
 
 int set_column(enum Case grid_case, unsigned int x) {
   int y = determine_y_in_col(&game_grid, x);
-  if (y >= 0 && x >= 0) {
+  if (Y_SIZE > y && y >= 0 && X_SIZE > x && x >= 0) {
     append_case(&game_grid, grid_case, x, y);
     return 0;
   } else {
@@ -57,6 +98,7 @@ int set_column(enum Case grid_case, unsigned int x) {
 }
 
 void loop_level() {
+  game_grid = create_grid();
   int turn_counter = 0;
 
   while (win_status != 1) {
@@ -79,9 +121,11 @@ void loop_level() {
     if (input_col >= 0) {
       int success = set_column(current_player, input_col);
       if (success == 1) {
-        printf(KRED "Column is full\n" RESET);
+        printf(KRED "Column not available\n" RESET);
         goto scan;
       }
+      calculate_win(&game_grid, red_player);
+      calculate_win(&game_grid, yellow_player);
       switch_player();
     } else {
       printf(KRED "Column not available\n" RESET);
@@ -100,6 +144,5 @@ void loop_level() {
  */
 void init() {
   printf(KGRN "Starting game..." RESET);
-  game_grid = create_grid();
   loop_level();
 }
