@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "help.h"
-#include "colors.h"
+#include "colors/codes.h"
 
 void desc() {
   printf("c-power4 Game \nHelp with usage of this simple program");

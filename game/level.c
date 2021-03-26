@@ -4,7 +4,8 @@
 #include "grid/model.h"
 #include "grid/displayer.h"
 #include "grid/controller.h"
-#include "colors.h"
+#include "colors/codes.h"
+#include "colors/ansi_escapes.h"
 #include <math.h>
 
 GridMap game_grid;
@@ -33,9 +34,10 @@ enum Case* is_win(int line, enum Case player) {
   if (line == 3) {
     win_status = 1;
     const char separator[] = "=======================";
-    printf(KBLU "\n %s \n", separator);
-    printf(" ==== %s WINNED ====", get_case_char(player));
-    printf("\n %s \n" RESET, separator);
+    printTextColor(BLUE_TXT, "\n %s \n", separator);
+    printTextColor(BLUE_TXT, " ==== %s ", get_case_char(player));
+    printTextColor(BLUE_TXT, "WINNED ====");
+    printTextColor(BLUE_TXT, "\n %s \n", separator);
 
     return (enum Case*) player;
   }
@@ -186,7 +188,7 @@ int set_column(enum Case grid_case, unsigned int x) {
  * - case 3 a player winned
  */
 void loop_level() {
-  printf(KGRN "Starting game..." RESET);
+  printTextColor(GREEN_TXT, "Starting game...");
   game_grid = create_grid();
   int turn_counter = 0;
 
@@ -210,14 +212,14 @@ void loop_level() {
     if (input_col >= 0) {
       int success = set_column(current_player, input_col);
       if (success == 1) {
-        printf(KRED "Column not available\n" RESET);
+        printTextColor(RED_TXT, "Column not available\n");
         goto scan;
       }
       calculate_win(&game_grid, red_player);
       calculate_win(&game_grid, yellow_player);
       switch_player();
     } else {
-      printf(KRED "Column not available\n" RESET);
+      printTextColor(RED_TXT, "Column not available\n");
       goto scan;
     }
 

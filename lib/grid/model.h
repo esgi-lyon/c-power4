@@ -12,9 +12,7 @@
 #ifndef MODEL_H_INCLUDED
 #define MODEL_H_INCLUDED
 
-enum Case{
-  case_empty, case_red, case_yellow
-};
+enum Case{case_empty, case_red, case_yellow};
 
 typedef enum Case Matrix[X_SIZE][Y_SIZE];
 

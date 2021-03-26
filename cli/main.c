@@ -1,9 +1,19 @@
+// Console libs
+#ifdef _WIN32
+#define  _CRT_SECURE_NO_WARNINGS 1
+#include <windows.h>
+#else
+#include <termios.h>
+#include <getopt.h>
+#endif
+// standard libs
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <getopt.h>
+// internal
 #include "help.h"
 #include "level.h"
+#include "colors/ansi_escapes.h"
 
 /**
  * Main entry of game
@@ -11,6 +21,8 @@
  */
 int main(int argc, char* argv[])
 {
+    setupConsole();
+
     static const struct option longopts[] = {
         {.name = "start", .has_arg = no_argument, .val = 's'},
         {.name = "help", .has_arg = no_argument, .val = 'h'}
@@ -30,5 +42,7 @@ int main(int argc, char* argv[])
               return 1;
         }
     }
+
+    restoreConsole();
     return 0;
 }
