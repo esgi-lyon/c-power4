@@ -112,17 +112,13 @@ int win_diagonal_bottom(GridMap* grid, enum Case player) {
         line++;
       }
 
-      if (line == 3) {
-        return line;
-      }
+      if (line == 3)return line;
 
       previous = grid->matrix[tmp_x][tmp_y];
     }
     // reset for next diagonal test
     line = 0;
   }
-
-  printf("\n\n");
 
   return line;
 }
@@ -152,6 +148,78 @@ int win_diagonal_bottom_reverse(GridMap* grid, enum Case player) {
         line++;
       }
 
+      if (line == 3) return line;
+
+      previous = grid->matrix[tmp_x][tmp_y];
+    }
+    // reset for next diagonal test
+    line = 0;
+  }
+
+  return line;
+}
+
+int win_diagonal_top(GridMap* grid, enum Case player) {
+  int x = 0;
+  int max_x = (int) round(X_SIZE / 2) + 1;
+  enum Case previous;
+  int line = 0;
+
+  for (; x < max_x; ++x) {
+    int tmp_y = Y_SIZE - 1;
+    int tmp_x = x;
+
+    if (player == grid->matrix[tmp_x][tmp_y]) {
+      previous = grid->matrix[tmp_x][tmp_y];
+    }
+
+    while (tmp_y > 0 && tmp_x < max_x) {
+      tmp_y++;
+      tmp_x++;
+
+      if (
+        player == grid->matrix[tmp_x][tmp_y] &&
+        previous == grid->matrix[tmp_x][tmp_y]
+      ) {
+        line++;
+      }
+
+      if (line == 3) return line;
+
+      previous = grid->matrix[tmp_x][tmp_y];
+    }
+    // reset for next diagonal test
+    line = 0;
+  }
+
+  return line;
+}
+
+int win_diagonal_top_reverse(GridMap* grid, enum Case player) {
+  int x;
+  x = (int) round(X_SIZE / 2) + 1;
+  enum Case previous;
+  int line = 0;
+
+  for (; x > 0; --x) {
+    int tmp_y = Y_SIZE - 1;
+    int tmp_x = x;
+
+    if (player == grid->matrix[tmp_x][tmp_y]) {
+      previous = grid->matrix[tmp_x][tmp_y];
+    }
+
+    while (tmp_y > 0 && tmp_x > 0) {
+      tmp_y++;
+      tmp_x--;
+
+      if (
+        player == grid->matrix[tmp_x][tmp_y] &&
+        previous == grid->matrix[tmp_x][tmp_y]
+      ) {
+        line++;
+      }
+
       if (line == 3) {
         return line;
       }
@@ -162,27 +230,19 @@ int win_diagonal_bottom_reverse(GridMap* grid, enum Case player) {
     line = 0;
   }
 
-  printf("\n\n");
-
   return line;
 }
 
 void calculate_win(GridMap* grid, enum Case player) {
-  if (is_win(win_horizontal(grid, player), player) != NULL) {
-    return;
-  }
-
-  if (is_win(win_vertical(grid, player), player) != NULL) {
-    return;
-  }
-
-  if (is_win(win_diagonal_bottom(grid, player), player) != NULL) {
-    return;
-  }
-
-  if (is_win(win_diagonal_bottom_reverse(grid, player), player) != NULL) {
-    return;
-  }
+  if (
+      is_win(win_horizontal(grid, player), player) != NULL ||
+      is_win(win_vertical(grid, player), player) != NULL ||
+      is_win(win_diagonal_bottom(grid, player), player) != NULL ||
+      is_win(win_diagonal_bottom_reverse(grid, player), player) != NULL ||
+      is_win(win_diagonal_bottom_reverse(grid, player), player) != NULL ||
+      is_win(win_diagonal_top(grid, player), player) != NULL ||
+      is_win(win_diagonal_top_reverse(grid, player), player) != NULL
+  ) return;
 }
 
 int determine_y_in_col(GridMap* grid, unsigned int x) {
