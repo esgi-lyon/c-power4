@@ -20,6 +20,7 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 EXECUTE = chmod +x $@ && $@ $(1)
 CFLAGS := -Wall -Wextra -Werror --std=c99
+LDFLAGS:= -lm
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	@$(CC) $(OBJS) -o $@ $(LDFLAGS)

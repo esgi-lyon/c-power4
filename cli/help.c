@@ -20,6 +20,7 @@ void error_usage() {
 
 void help(int error) {
   if (error == 1) error_usage();
+
   desc();
   commands();
 }
