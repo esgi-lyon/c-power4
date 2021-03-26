@@ -4,7 +4,6 @@
 #include "grid/model.h"
 #include "grid/displayer.h"
 #include "grid/controller.h"
-#include "colors/codes.h"
 #include "colors/ansi_escapes.h"
 #include <math.h>
 
@@ -181,6 +180,13 @@ int set_column(enum Case grid_case, unsigned int x) {
   }
 }
 
+int scan_int_secure() {
+  char input_col[CHAR_MAX] = "";
+  scanf("%s", input_col);
+
+  return atoi(input_col);
+}
+
 /**
  * @brief on start game input from, cli build and loop levels
  * - case 1 begin game
@@ -193,36 +199,33 @@ void loop_level() {
   int turn_counter = 0;
 
   while (win_status != 1) {
+    int input_col;
     // Choose first player
     if (turn_counter == 0) {
       switch_player();
       turn_counter++;
+      print_grid(&game_grid);
       continue;
     };
 
-    print_grid(&game_grid);
-
-    int input_col;
-
     printf("%s : Enter a column from 1 to 7 \n", get_case_char(current_player));
-    scan: scanf("%d", &input_col);
-
+    input_col = scan_int_secure();
+    printf("%d", input_col);
     input_col--;
 
     if (input_col >= 0) {
       int success = set_column(current_player, input_col);
       if (success == 1) {
         printTextColor(RED_TXT, "Column not available\n");
-        goto scan;
+        continue;
       }
       calculate_win(&game_grid, red_player);
       calculate_win(&game_grid, yellow_player);
       switch_player();
+      turn_counter++;
+      print_grid(&game_grid);
     } else {
       printTextColor(RED_TXT, "Column not available\n");
-      goto scan;
     }
-
-    turn_counter++;
   }
 }

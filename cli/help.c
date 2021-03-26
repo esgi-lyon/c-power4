@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "help.h"
-#include "colors/codes.h"
+#include "colors/ansi_escapes.h"
 
 void desc() {
   printf("c-power4 Game \nHelp with usage of this simple program");
@@ -15,7 +15,7 @@ void commands() {
 }
 
 void error_usage() {
-  printf(KRED "Error : Wrong usage of the cli, printing help...\n" RESET);
+  printTextColor(RED_TXT, "Error : Wrong usage of the cli, printing help...\n");
 }
 
 void help(int error) {
