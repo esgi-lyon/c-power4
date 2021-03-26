@@ -88,56 +88,82 @@ int win_horizontal(GridMap* grid, enum Case player) {
 }
 
 int win_diagonal_bottom(GridMap* grid, enum Case player) {
-  int x, y;
-  x = y = 0;
+  int x = 0;
+  int max_x = (int) round(X_SIZE / 2) + 1;
   enum Case previous;
   int line = 0;
-  if (player == grid->matrix[x][y]) previous = grid->matrix[x][y];
 
-  while (y < Y_SIZE || x < (int) round(X_SIZE / 2) + 1) {
-    y++;
-    x++;
+  for (; x < max_x; ++x) {
+    int tmp_y = 0;
+    int tmp_x = x;
 
-    if (
-      player == grid->matrix[x][y] &&
-      previous == grid->matrix[x][y]
-    ) {
-      line++;
+    if (player == grid->matrix[tmp_x][tmp_y]) {
+      previous = grid->matrix[tmp_x][tmp_y];
     }
 
-    previous = grid->matrix[x][y];
+    while (tmp_y < Y_SIZE && tmp_x < max_x) {
+      tmp_y++;
+      tmp_x++;
+
+      if (
+        player == grid->matrix[tmp_x][tmp_y] &&
+        previous == grid->matrix[tmp_x][tmp_y]
+      ) {
+        line++;
+      }
+
+      if (line == 3) {
+        return line;
+      }
+
+      previous = grid->matrix[tmp_x][tmp_y];
+    }
+    // reset for next diagonal test
+    line = 0;
   }
+
+  printf("\n\n");
 
   return line;
 }
 
 int win_diagonal_bottom_reverse(GridMap* grid, enum Case player) {
-  int x, y;
-  y = 0;
-  x = X_SIZE;
+  int x;
+  x = (int) round(X_SIZE / 2) + 1;
   enum Case previous;
   int line = 0;
 
-  if (player == grid->matrix[x - 1][y])
-    previous = grid->matrix[x -1][y];
+  for (; x > 0; --x) {
+    int tmp_y = 0;
+    int tmp_x = x;
 
-  while (y < Y_SIZE || x > 0) {
-    y++;
-    x--;
-    printf("x : %d / y : %d", x, y);
-
-    if (
-      player == grid->matrix[x][y] &&
-      previous == grid->matrix[x][y]
-    ) {
-      printf("%s", get_case_char(grid->matrix[x][y]));
-      line++;
+    if (player == grid->matrix[tmp_x][tmp_y]) {
+      previous = grid->matrix[tmp_x][tmp_y];
     }
-    printf("\n");
 
-    previous = grid->matrix[x][y];
+    while (tmp_y < Y_SIZE && tmp_x > 0) {
+      tmp_y++;
+      tmp_x--;
+
+      if (
+        player == grid->matrix[tmp_x][tmp_y] &&
+        previous == grid->matrix[tmp_x][tmp_y]
+      ) {
+        line++;
+      }
+
+      if (line == 3) {
+        return line;
+      }
+
+      previous = grid->matrix[tmp_x][tmp_y];
+    }
+    // reset for next diagonal test
+    line = 0;
   }
+
   printf("\n\n");
+
   return line;
 }
 
