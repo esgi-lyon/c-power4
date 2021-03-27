@@ -9,8 +9,8 @@ char separator[] = "---------------------------------------------------------";
 const char* get_case_char(enum Case grid_case) {
    switch (grid_case) {
       case case_empty: return "\t";
-      case case_red: return getTextColor(RED_TXT, PLAYER_CHAR);
-      case case_yellow: return getTextColor(YELLOW_TXT, PLAYER_CHAR);
+      case case_red: return get_text_color(RED_TXT, PLAYER_CHAR);
+      case case_yellow: return get_text_color(YELLOW_TXT, PLAYER_CHAR);
       default: return "\t";
    }
 }

@@ -15,7 +15,7 @@ void commands() {
 }
 
 void error_usage() {
-  printTextColor(RED_TXT, "Error : Wrong usage of the cli, printing help...\n");
+  print_text_color(RED_TXT, "Error : Wrong usage of the cli, printing help...\n");
 }
 
 void help(int error) {

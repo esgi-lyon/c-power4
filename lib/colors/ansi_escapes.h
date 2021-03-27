@@ -34,11 +34,11 @@ enum ClearCodes {
 void setupConsole(void);
 void restoreConsole(void);
 
-static inline void setTextColor(int code) {
+static inline void set_text_color(int code) {
     printf("\x1b[%dm", code);
 }
 
-static inline char* getTextColor(int code, char char_list[]) {
+static inline char* get_text_color(int code, char char_list[]) {
     static char buffer[CHAR_MAX];
     snprintf(buffer, sizeof(buffer),
       "\x1b[%dm%s\x1b[%dm", code, char_list, RESET_COLOR
@@ -63,7 +63,7 @@ static inline void resetColor(void) {
     printf("\x1b[%dm", RESET_COLOR);
 }
 
-#define printTextColor(code, ...) setTextColor(code); \
+#define print_text_color(code, ...) set_text_color(code); \
                             printf(__VA_ARGS__); \
                             resetColor()
 

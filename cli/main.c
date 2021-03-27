@@ -2,7 +2,6 @@
 #ifdef _WIN32
 #define  _CRT_SECURE_NO_WARNINGS 1
 #include <windows.h>
-#include <getopt.h>
 #else
 #include <termios.h>
 #include <getopt.h>
